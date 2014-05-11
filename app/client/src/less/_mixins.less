@@ -1,21 +1,3 @@
-/******************************************************************
-Site Name: 
-Author: 
-
-Stylesheet: Mixins & Constants Stylesheet
-
-This is where you can take advantage of LESS' great features: 
-Mixins & Constants. I won't go in-depth on how they work exactly,
-there are a few articles below that will help do that. What I will
-tell you is that this will help speed up simple changes like
-changing a color or adding CSS3 techniques like box shadow and
-border-radius.
-
-A WORD OF WARNING: It's very easy to overdo it here. Be careful and
-remember less is more. 
-
-******************************************************************/
-
 /*********************
 CLEARFIXIN'
 *********************/
@@ -31,14 +13,13 @@ CLEARFIXIN'
 TOOLS
 *********************/
 
-// BORDER-BOX ALL THE THINGS! (http://paulirish.com/2012/box-sizing-border-box-ftw/)
+// BORDER-BOX ALL THE THINGS!
 * { 
 	-webkit-box-sizing: border-box; 
 	-moz-box-sizing:    border-box; 
 	box-sizing:         border-box; 
 }
 
-// http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/ 
 .image-replacement {
 	text-indent: 100%;
 	white-space: nowrap;
@@ -47,8 +28,6 @@ TOOLS
 
 /*********************
 COLORS
-Need help w/ choosing your colors? Try this site out:
-http://0to255.com/
 *********************/
 
 @yellow:      		#C4AF28;
@@ -65,16 +44,10 @@ http://0to255.com/
 @white:             #f1f1f1;
 @grey:              #777;
 
-@strapless:         #45CBBA;
+@strapless:         #87b48c;
 
 @link-color:        @strapless;
 @link-hover:        darken(@link-color, 9%);
-
-/*
-Here's a great tutorial on how to
-use color variables properly:
-http://sachagreif.com/sass-color-variables/
-*/
 
 
 /*********************
@@ -83,15 +56,6 @@ TYPOGRAPHY
 
 @sans-serif:         "Helvetica Neue", Helvetica, Arial, sans-serif; 
 @serif:              "Georgia", Cambria, Times New Roman, Times, serif; 
-
-
-/* 	To embed your own fonts, use this syntax
-	and place your fonts inside the 
-	library/fonts folder. For more information
-	on embedding fonts, go to:
-	http://www.fontsquirrel.com/
-	Be sure to remove the comment brackets.
-*/
 
 /*	@font-face {
     	font-family: 'Font Name';
@@ -105,10 +69,6 @@ TYPOGRAPHY
 	}
 */
 
-/* 
-use the best ampersand 
-http://simplebits.com/notebook/2008/08/14/ampersands-2/
-*/
 span.amp {
   font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif;
   font-style: italic;
@@ -152,28 +112,15 @@ span.amp {
 }
 
 /*********************
-BORDER RADIUS
+browser prefixin'
 *********************/
 
-/* 
-NOTE: For older browser support (and some mobile), 
-don't use the shorthand to define *different* corners. 
-
-USAGE: .border-radius(4px); 
-
-*/
 .border-radius(@radius: 4px) {
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;
           border-radius: @radius;
 }
 
-
-/*********************
-TRANISTION
-*********************/
-
-/* .transition(all,2s); */
 .transition(@what: all, @time: 0.2s, @transition: ease-in-out) {
 	-webkit-transition: @what @time @transition;
 	-moz-transition:    @what @time @transition;
@@ -182,13 +129,6 @@ TRANISTION
 	transition:         @what @time @transition;
 }
 
-/*********************
-CSS3 GRADIENTS
-Be careful with these since they can 
-really slow down your CSS. Don't overdo it.
-*********************/
-
-/* .css-gradient(#dfdfdf,#f8f8f8); */
 .css-gradient(@from: #dfdfdf, @to: #f8f8f8) {
 	background-color: @to;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
@@ -198,11 +138,6 @@ really slow down your CSS. Don't overdo it.
 	background-image: linear-gradient(to bottom, @from, @to);
 }
 
-/*********************
-BOX SHADOW
-*********************/
-
-/* .boxShadow(0,0,4px,0,#444); */
 .boxShadow(@x: 0, @y: 0, @radius: 4px, @spread: 0, @color: rgba(0,0,0,0.5)) when (isnumber(@x)) {
 	-webkit-box-shadow: @x @y @radius @spread @color;
 	   -moz-box-shadow: @x @y @radius @spread @color;
@@ -252,7 +187,7 @@ BUTTONS
 
 
 .make-icon(@content; @font: 'icomoon') {
-	font-family: 'icomoon';
+	font-family: @font;
 	speak: none;
 	font-style: normal;
 	font-weight: normal;

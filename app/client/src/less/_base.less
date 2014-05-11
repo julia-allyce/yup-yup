@@ -1,30 +1,3 @@
-/******************************************************************
-Site Name:
-Author:
-
-Stylesheet: Base Mobile Stylesheet
-
-Be light and don't over style since everything here will be
-loaded by mobile devices. You want to keep it as minimal as
-possible. This is called at the top of the main stylsheet
-and will be used across all viewports.
-
------------- MAP ------------
-
-01. GENERAL STYLES
-02. LAYOUT & GRID STYLES
-03. LINK STYLES
-04. H1, H2, H3, H4, H5 STYLES
-05. HEADER STYLES
-06. NAVIGATION STYLES
-07. FORM STYLES
-08. FOOTER STYLES
-
-******************************************************************/
-
-
-
-
 /*********************
 01. GENERAL STYLES
 *********************/
@@ -134,6 +107,7 @@ h5, .h5 {
 	overflow-y:hidden;
 	margin-left: -300px;
 	background: @link-color;
+	z-index: 1;
 	.transition(margin, linear, 150ms);
 
 	&.open {
@@ -177,12 +151,7 @@ h5, .h5 {
 			&.logo {
 				font-style: italic;
 			}
-			/*
-			remember this is for mobile ONLY, so there's no need
-			to even declare hover styles here, you can do it in
-			the style.scss file where it's relevant. We want to
-			keep this file as small as possible!
-			*/
+
 			&:hover,&:focus {
 				color:darken(@white, 40%);
 			}
@@ -192,13 +161,6 @@ h5, .h5 {
 
 		&:last-child {}
 
-		/*
-		so you really have to rethink your dropdowns for mobile.
-		you don't want to have it expand too much because the
-		screen is so small. How you manage your menu should
-		depend on the project. Here's some great info on it:
-		http://www.alistapart.com/articles/organizing-mobile/
-		*/
 		ul {
 			padding: 0;
 			margin:0;
@@ -228,7 +190,13 @@ h5, .h5 {
 
 } /* end menu */
 
-.side-nav {}
+.content {
+	padding: 0 2em 0 2em;
+}
+
+.side-nav.open ~ .content {
+	opacity: 0.5;
+}
 
 /*********************
 07. FORM STYLES
@@ -273,7 +241,6 @@ input[type=reset] {
 	.btn;
 }
 
-//This increases clickability on smaller screen devices
 input, button, textarea, label, select {
 	display: block;
 	min-width:80%;
