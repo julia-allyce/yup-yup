@@ -1,0 +1,270 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+------------ MAP ------------
+
+01. GENERAL STYLES
+02. LAYOUT & GRID STYLES
+03. LINK STYLES
+04. H1, H2, H3, H4, H5 STYLES
+05. HEADER STYLES
+06. NAVIGATION STYLES
+07. FORM STYLES
+08. FOOTER STYLES
+
+******************************************************************/
+
+
+
+
+/*********************
+01. GENERAL STYLES
+*********************/
+
+html, body {
+	background-color: @white;
+}
+body {
+	font-family: @sans-serif;
+	font-size: 100%;
+	line-height: 1.5;
+	color: @black;
+}
+
+mark {
+    background: none repeat scroll 0% 0% lighten(@yellow, 15%);
+}
+
+table {
+	width:100%;
+}
+
+/*********************
+03. LINK STYLES
+*********************/
+
+a, a:visited {
+	color: @link-color;
+
+	/* on hover */
+	&:hover, &:focus {
+		color: @link-hover;
+	}
+
+	/* on click */
+	&:active {
+
+	}
+
+	/* mobile tap color */
+	&:link {
+		/*
+		this highlights links on iPhones/iPads.
+		so it basically works like the :hover selector
+		for mobile devices.
+		*/
+		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+	}
+}
+
+/******************************************************************
+04. H1, H2, H3, H4, H5 STYLES
+******************************************************************/
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+	font-family: @sans-serif;
+	text-rendering: optimizelegibility;
+	font-weight: 400;
+	/*
+	if you're going to use webfonts, be sure to check your weights
+	http://css-tricks.com/watch-your-font-weight/
+	*/
+
+	/* removing text decoration from all headline links */
+	a {
+		text-decoration: none;
+	}
+}
+
+h1, .h1 {
+	font-size: 2.5em;
+	line-height: 1.333em;
+}
+
+h2, .h2 {
+	font-size: 1.75em;
+	line-height: 1.4em;
+	margin-bottom: 0.375em;
+}
+
+h3, .h3 {
+	font-size: 1.125em;
+}
+
+h4, .h4 {
+	font-size: 1.1em;
+	font-weight: 700;
+}
+
+h5, .h5 {
+	font-size: 0.846em;
+	line-height: 2.09em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+
+/*********************
+06. NAVIGATION STYLES
+*********************/
+
+
+menu {
+	padding: 0;
+	margin:0;
+
+	li {
+
+		a {
+			display: block;
+			height: 3em;
+			text-decoration: none;
+			padding: 10px 10px;
+			background-color: @link-color;
+			color:#fff;
+			text-transform: uppercase;
+			font-weight: 700;
+			letter-spacing: 1px;
+
+			&#logo {
+				text-transform: none;
+				font-style: italic;
+			}
+			/*
+			remember this is for mobile ONLY, so there's no need
+			to even declare hover styles here, you can do it in
+			the style.scss file where it's relevant. We want to
+			keep this file as small as possible!
+			*/
+			&:hover,&:focus {
+				color:#fff;
+				background-color: @link-hover;
+			}
+		}
+
+		&:first-child {}
+
+		&:last-child {}
+
+		/*
+		so you really have to rethink your dropdowns for mobile.
+		you don't want to have it expand too much because the
+		screen is so small. How you manage your menu should
+		depend on the project. Here's some great info on it:
+		http://www.alistapart.com/articles/organizing-mobile/
+		*/
+		ul {
+			padding: 0;
+			margin:0;
+
+			li {
+
+				a {
+					padding-left: 2em;
+					text-transform: none;
+
+					&:hover,
+					&:focus {}
+
+					&:link {}
+
+				}
+
+				&:first-child {}
+
+				&:last-child {}
+
+			}
+
+		}
+
+	} /* end menu li */
+
+} /* end menu */
+
+/*********************
+07. FORM STYLES
+*********************/
+fieldset {
+	border:none;
+	padding:1.5em;
+	margin:0;
+	background: darken(@white, 5%);
+}
+
+legend {
+	font-size: 1.5em;
+	font-style: italic;
+}
+
+input, textarea {
+	border-radius:0;
+	padding:8px;
+	border:none;
+	border-left: 4px solid @grey;
+	background:#fff;
+	.transition;
+	margin: 10px 0 20px 0;
+
+	&:focus, &:active, &:hover {
+		border-left: 4px solid @link-color;
+		outline:none;
+	}
+}
+
+label {
+	font-size: 1.2em;
+	margin: 10px 0 0 0;
+}
+
+button, 
+input[type=button], 
+input[type=submit], 
+input[type=reset] {
+	margin:20px 0  20px 0;
+	.btn;
+}
+
+//This increases clickability on smaller screen devices
+input, button, textarea, label, select {
+	display: block;
+	min-width:80%;
+}
+
+/*********************
+08. FOOTER STYLES
+*********************/
+
+footer {
+	clear: both;
+	nav {
+		li {
+			a {}
+
+			&:first-child {}
+
+			&:last-child {}
+		}
+	}
+}
+
+.copyright {}
+

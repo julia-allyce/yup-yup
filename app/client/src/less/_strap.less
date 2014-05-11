@@ -1,0 +1,108 @@
+.strapless-radio {
+	// hides default radio
+	input[type=radio] {
+		position:absolute;
+		opacity:0;
+		//if radio is checked change icon to checked radio
+		&:checked + label:before {
+			.make-icon("\e73b");
+		}
+	}
+
+	//creates an unchecked icon before the label
+	label:before {
+		.make-icon("\e73c");
+		padding-right:0.5em;
+		vertical-align: bottom;
+	}
+}
+
+.strapless-checkbox {
+	// hides default radio
+	input[type=checkbox] {
+		position:absolute;
+		opacity:0;
+		//if radio is checked change icon to checked radio
+		&:checked + label:before {
+			.make-icon("\e738");
+		}
+	}
+
+	//creates an unchecked icon before the label
+	label:before {
+		.make-icon("\e739");
+		padding-right:0.5em;
+		vertical-align: bottom;
+	}
+}
+
+table.strapless-table {
+	border:1px solid darken(@white, 15%);
+	background: @white;
+
+	caption {
+		font-size: 1.5em;
+		font-style: italic;
+	}
+
+	th,td {
+		padding:0.25em;
+	}
+
+	thead {
+		text-align: left;
+		border-bottom: 1px solid darken(@white, 15%);
+	}
+
+	tfoot {
+		text-align: left;
+		border-top: 1px solid darken(@white, 15%);
+	}
+
+	tbody tr {
+		&:nth-child(even) {
+			background: #fff;
+		}
+		&:hover {
+			background: lighten(@strapless, 20%);
+		}
+		.transition;
+	}
+}
+
+.btn {
+
+	padding: .75em 1.25em;
+	margin:0;
+	.button();
+
+	&.btn-success {
+		.button(@green, #fff);
+	}
+
+	&.btn-inverse {
+		.button(#333, #fff);
+	}
+
+	&.btn-primary{
+		.button(@strapless, #fff);
+	}
+
+	&.btn-blue {
+		.button(@blue, #fff);
+	}
+
+	&.btn-warning {
+		.button(@yellow, #fff);
+	}
+
+	&.btn-danger {
+		.button(@red, #fff);
+	}
+	&.btn-large {
+		font-size: 1.3em;
+	}
+	&.btn-small{
+		font-size: .9em;
+	}
+}

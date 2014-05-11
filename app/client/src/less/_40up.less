@@ -1,0 +1,142 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+Here's where you can start getting into the good stuff.
+This size will work on iPads, other tablets, and desktops.
+So you can start working with more styles, background images,
+and other resources. You'll also notice the grid starts to
+come into play. Have fun!
+
+******************************************************************/
+
+
+/*********************
+GENERAL STYLES
+*********************/
+
+body {}
+
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+
+.wrap {
+	max-width: 1140px;
+}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+menu {
+	width:100%;
+	height: 3em;
+	background: @link-color;
+
+
+	li {
+		display: inline-block;
+		width: auto;
+
+		a {
+			padding:.75em 1.25em;
+
+			/*
+			you can use hover styles here even though this size
+			has the possibility of being a mobile device.
+			*/
+			&:hover, &:focus {
+			}
+		}
+
+		&:first-child {}
+		&:last-child {}
+
+		/*
+		plan your menus and drop-downs wisely.
+		*/
+		ul {
+			margin-top: 0;
+			border-top: 0;
+			position: absolute;
+			display: none;
+			z-index: 8999;
+
+			li {
+				display: block;
+				a {
+					padding-left: 10px;
+					border-right: 0;
+					width: 180px;
+					height: auto;
+					clear:both;
+					background-color: #fff;
+					color:@link-color;
+
+					&:hover,
+					&:focus {
+						color: @link-hover;
+						background-color: darken(#fff, 10%);
+					}
+
+					&:link {}
+				}
+
+				&:first-child {}
+
+				&:last-child {
+
+					a {
+						border-bottom: 0;
+					}
+				}
+
+				/*
+				if you need to go deeper, go nuts
+				just remember deeper menus suck
+				for usability. k, bai.
+				*/
+				ul {}
+			}
+
+		}
+
+		/* showing sub-menus */
+		&:hover ul {
+			top: auto;
+			display: block;
+		}
+
+	} /* end menu li */
+
+} /* end menu */
+
+
+/*********************
+FOOTER STYLES
+*********************/
+
+/*
+you'll probably need to do quite a bit
+of overriding here if you styled them for
+mobile. Make sure to double check these!
+*/
+footer {
+	menu {
+		li {
+			a {
+				&:hover {}
+			}
+			/*
+			be careful with the depth of your menus.
+			it's very rare to have multi-depth menus in
+			the footer.
+			*/
+			ul {}
+		}
+	}
+} /* end footer */
+

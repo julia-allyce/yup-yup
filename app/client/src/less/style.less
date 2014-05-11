@@ -1,0 +1,122 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. Here, you'll see we are calling in
+the separate media queries. The base mobile goes outside any query
+and is called at the beginning, after that we call the rest
+of the styles inside media queries.
+******************************************************************/
+
+
+//
+// IMPORTING STYLES
+//
+
+// import normalize
+@import "_normalize.less";
+
+// import mixins
+@import "_mixins.less";
+
+@import "_icons.less";
+
+/*
+BASE (MOBILE) SIZE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*/
+
+// styles in base.less
+
+@import "_base.less";
+
+@import "_strap.less";
+
+/*
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+~481px+
+*/
+@media only screen and (min-width: 28.75em) {
+
+	@import "_28up.less";
+
+} 
+
+/*
+TABLET & SMALLER LAPTOPS
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+~768px+
+*/
+@media only screen and (min-width: 40.5em) {
+
+	// import grid
+	@import "_grid.less";
+
+	// styles in 40up.less
+	@import "_40up.less";
+
+} // end of media query
+
+/*
+DESKTOP
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+~1030px+
+*/
+@media only screen and (min-width: 64.375em) {
+
+	// styles in 64up.less
+	@import "_64up.less";
+
+} // end of media query
+
+/*
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+~1240px+
+*/
+@media only screen and (min-width: 77.5em) {
+
+	// styles in 77up.less
+	@import "_77up.less";
+
+} // end of media query
+
+/*
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+
+	// styles in 2x.less
+	@import "_2x.less";
+
+} // end of media query
+
+
+/*
+PRINT STYLESHEET
+Feel free to customize this. Remember to add things that won't make
+sense to print at the bottom. Things like nav, ads, and forms should
+be set to display none.
+*/
+@media print {
+
+	@import "_print.less";
+
+} // end of media query
+
