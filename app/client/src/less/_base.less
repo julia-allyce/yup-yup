@@ -126,10 +126,42 @@ h5, .h5 {
 06. NAVIGATION STYLES
 *********************/
 
+.side-nav {
+	position: absolute;
+	width:300px;
+	height:100%;
+	overflow-x:auto;
+	overflow-y:hidden;
+	margin-left: -300px;
+	background: @link-color;
+	.transition(margin, linear, 150ms);
 
-menu {
+	&.open {
+		margin-left: 0;
+	}
+
+	li {
+		a {
+			display: block;
+			height: 3em;
+			text-decoration: none;
+			padding: 10px 10px;
+			color:#fff;
+			text-transform: uppercase;
+			font-weight: 700;
+			letter-spacing: 1px;
+
+			&:hover,&:focus {
+				background:@link-hover;
+			}
+		}
+	}
+}
+
+.top-nav {
 	padding: 0;
-	margin:0;
+	margin: 0;
+	list-style: none;
 
 	li {
 
@@ -138,14 +170,11 @@ menu {
 			height: 3em;
 			text-decoration: none;
 			padding: 10px 10px;
-			background-color: @link-color;
-			color:#fff;
-			text-transform: uppercase;
+			color:darken(@white, 20%);
 			font-weight: 700;
 			letter-spacing: 1px;
 
-			&#logo {
-				text-transform: none;
+			&.logo {
 				font-style: italic;
 			}
 			/*
@@ -155,8 +184,7 @@ menu {
 			keep this file as small as possible!
 			*/
 			&:hover,&:focus {
-				color:#fff;
-				background-color: @link-hover;
+				color:darken(@white, 40%);
 			}
 		}
 
@@ -199,6 +227,8 @@ menu {
 	} /* end menu li */
 
 } /* end menu */
+
+.side-nav {}
 
 /*********************
 07. FORM STYLES

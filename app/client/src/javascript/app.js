@@ -1,6 +1,8 @@
 _          = require('underscore');
 Backbone   = require('backbone');
 Backbone.$ = require('jquery');
-View = require('./views/home');
+HomeView = require('./views/home');
+MenuView = require('./views/menu');
 
-view = new View({ el: Backbone.$('#content')}).render();
+homeView = new HomeView({ el: Backbone.$('.content')}).render();
+menuView = new MenuView({ el: Backbone.$('.side-nav')}).render();

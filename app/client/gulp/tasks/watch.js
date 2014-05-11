@@ -11,5 +11,5 @@ gulp.task('watch', function() {
 	gulp.watch('src/javascript/**', ['browserify']);
 	gulp.watch('src/less/**', ['less']);
 	gulp.watch('src/images/**', ['images']);
-	gulp.watch(['build/**']).on('change', reload);
+	gulp.watch(['build/**/*']).on('change', reload);
 });
