@@ -100,7 +100,7 @@ h5, .h5 {
 *********************/
 
 .side-nav {
-	position: absolute;
+	position: fixed;
 	top:0;
 	padding-top: 3em;
 	width:300px;
@@ -201,11 +201,15 @@ h5, .h5 {
 
 
 .conversation-window {
-	padding: 0 2em 0 2em;
+	padding: 2em 2em 0 2em;
+	margin-bottom: 80px;
 }
+
 .response {
-	position: relative;
+	position: fixed;
 	bottom:0;
+	right:0;
+	left:0;
 	textarea {
 		margin:0;
 		width:80%;
@@ -218,9 +222,14 @@ h5, .h5 {
 		height: 80px;
 	}
 }
-p.h2 {
+p.title {
+	position: fixed;
+	text-shadow: 1px 1px 10px @white;
+	top:2em;
+	z-index:1;
 	margin: 0;
 	font-weight: 600;
+	.transition(position, linear, 150ms);
 }
 .message{
 	clear:both;
