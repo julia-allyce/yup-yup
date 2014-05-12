@@ -3,10 +3,10 @@ module.exports = Backbone.View.extend({
 	render: function () {
 		this.$el.append(this.template({
 			menuItems: [
-				'Foo',
-				'Bar',
-				'Roger',
-				'Dodger'
+				'@JuliaAllyce',
+				'@LizPoladsky',
+				'@Polad',
+				'@AnotherUser'
 			]
 		}));
 		return this;

@@ -87,6 +87,14 @@ NAVIGATION STYLES
 
 } /* end menu */
 
+.content {
+	.transition(margin, linear, 150ms);
+}
+
+.side-nav.open ~ .content {
+	opacity: 1;
+	margin-left: 300px;
+}
 
 /*********************
 FOOTER STYLES
