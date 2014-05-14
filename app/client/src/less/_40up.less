@@ -94,6 +94,24 @@ NAVIGATION STYLES
 .content {
 	margin-top: 3em;
 	.transition(margin, linear, 150ms);
+
+	.sign-in-up {
+		.error-msg {
+			margin: 20px auto;
+			max-width: 60%;
+		}
+		input {
+			margin:0 auto;
+			width:60%;
+			border-bottom: 1px solid darken(@white, 15%);
+			&:last-of-type {
+				border-bottom: 0;
+			}
+		}
+		button {
+			width:60%;
+		}
+	}
 }
 
 .side-nav.open ~ .content {

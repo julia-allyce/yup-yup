@@ -305,6 +305,14 @@ input, textarea {
 		border-left: 4px solid @link-color;
 		outline:none;
 	}
+
+	&.error {
+		border-left: 4px solid @red;
+		&:focus, &:active, &:hover {
+			border-left: 4px solid @red;
+		}
+	}
+
 }
 
 label {
@@ -322,7 +330,7 @@ input[type=reset] {
 
 input, button, textarea, label, select {
 	display: block;
-	min-width:80%;
+	width:80%;
 }
 
 /*********************

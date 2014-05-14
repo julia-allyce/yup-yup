@@ -1,19 +1,22 @@
 var User = require('../../models/user'),
-	post = module.exports = function(req, res) {
+	passport = require('passport'),
+    cookieParser = require('cookie-parser'),
+    bodyParser   = require('body-parser'),
+    User   = require('../../models/user'),
+    session      = require('express-session');
+
+require('../../../config/passport')(passport);
+
+module.exports = function(req, res) {
 		
-		var user = new User({
-			name: req.body.name,
-			handle: req.body.handle,
-			email: req.body.email,
-			bio: req.body.bio,
-			isActive: req.body.isActive
-		}); 
-
-		user.save(function(err) {
-			if (err)
-				res.status(500).status(500).send(err);
-
-			res.status(201).json(user);
-		});
+		passport.authenticate('local-signup', function(err, user, msg) {
+			if(err)
+				res.status(500).json(err);
+			if(user) {
+				res.status(201).json(user.publicUser());
+			} else {
+				res.status(400).json(msg.content);
+			}
+		})(req, res);
 		
 	};
