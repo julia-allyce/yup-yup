@@ -22,7 +22,9 @@ var User = module.exports = Backbone.Model.extend({
 				model.unset('handle',{silent: true});
 				model.unset('bio',{silent: true});
 				model.unset('_id',{silent: true});
+				model.unset('isActive',{silent: true});
 				model.unset('password',{silent: true});
+				App.Conversations.reset([]);
 				model.set('isAuthenticated', false);
 			}
 		});

@@ -2,7 +2,7 @@ var Message = module.exports = Backbone.Model.extend({
 	idAttribute: "_id",
 	parse:function (response) {
 		var direction = 'incoming';
-		if(response.user === App.User.get('_id'))
+		if(response.user === App.User.id)
 			direction = 'outgoing';
 		this.set('direction', direction);
 		this.set('timestamp', new Date(response.sent));

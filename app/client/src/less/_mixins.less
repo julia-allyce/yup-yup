@@ -153,6 +153,24 @@ browser prefixin'
 			box-shadow: @x; 
 }
 
+.animationCounts(@dur: 500ms, @del: 200ms, @it: 1) {
+	-webkit-animation-duration: @dur;
+	-webkit-animation-delay: @del;
+	-webkit-animation-iteration-count: @it;
+	-moz-animation-duration: @dur;
+	-moz-animation-delay: @del;
+	-moz-animation-iteration-count: @it;
+	-ms-animation-duration: @dur;
+	-ms-animation-delay: @del;
+	-ms-animation-iteration-count: @it;
+	-o-animation-duration: @dur;
+	-o-animation-delay: @del;
+	-o-animation-iteration-count: @it;
+	animation-duration: @dur;
+	animation-delay: @del;
+	animation-iteration-count: @it;
+}
+
 /*********************
 BUTTONS
 *********************/

@@ -15,11 +15,8 @@ App = {
 };
 App.User = new App.Models.User();
 App.View = new MasterView({ el: Backbone.$('body') });
-Backbone.history.start({pushState: true, root:'/app/'});
 
 Backbone.$(document).ready(function(){
 	App.View.render();
-	var currentPath = document.URL.split('/app/');
-	App.Router.navigate("signin", {trigger: true});
-
+	Backbone.history.start({pushState: true, root:'/app/'});
 });

@@ -5,9 +5,11 @@ var Workspace = module.exports = Backbone.Router.extend({
     'signup' : 'signup',
     'conversation/:user' : 'conversation'
   },
-
   inbox: function () {
-  	App.View.renderChildView('.content', App.Views.Inbox);
+    if(App.User.get('isAuthenticated'))
+  	 App.View.renderChildView('.content', App.Views.Inbox);
+    else
+      this.navigate('signin', {trigger: true});
   },
   signin: function () {
   	App.View.renderChildView('.content', App.Views.Signin);
@@ -16,8 +18,11 @@ var Workspace = module.exports = Backbone.Router.extend({
     App.View.renderChildView('.content', App.Views.Signup);
   },
   conversation: function (user) {
-    App.CurrentConversation = App.Conversations.findWhere({userLookUp: user});
-    App.TalkingTo = user;
-    App.View.renderChildView('.content', App.Views.Conversation);
+    if(App.User.get('isAuthenticated')) {
+      App.CurrentConversation = App.Conversations.findWhere({userLookUp: user});
+      App.TalkingTo = user;
+      App.View.renderChildView('.content', App.Views.Conversation);
+    } else
+      this.navigate('signin', {trigger: true});
   }
 });

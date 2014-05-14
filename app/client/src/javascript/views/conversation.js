@@ -20,6 +20,13 @@ module.exports = Backbone.View.extend({
 		this.model.get('messages').each(function (model) {
 			this.addOne(model);
 		}, this);
+		this.scrollBottom();
+	},
+	scrollBottom: function () {
+		var convoDiv = this.$(".conversation-window")[0];
+		setTimeout( function () {
+			Backbone.$(window).scrollTop(convoDiv.scrollHeight);
+		}, 10);
 	},
 	addOne:function (model) {
 		model.format();
@@ -55,17 +62,17 @@ module.exports = Backbone.View.extend({
 			newMsg.sync('create', newMsg, {
 				url: App.apiRoot + 'conversations/' + this.model.get('_id'),
 				success: _.bind(function (res, model) {
-					console.log(arguments);
 					newMsg.set({'sent': new Date()});
 					this.addOne(newMsg);
 					this.$('.content').val('');
+					this.scrollBottom();
 				}, this)
 			});
 		} else {
 			var newCol = new App.Models.Conversation(_.extend( creds,
 				{
 					messages:[data],
-					alias: App.User.get('friends').findWhere({_id: App.TalkingTo}).get('name'),
+					alias: App.User.get('friends').findWhere({_id: App.TalkingTo}).get('handle') + ' & ' + App.User.get('handle'),
 					participants:[App.User.get('_id'), App.TalkingTo]
 				}));
 
@@ -74,7 +81,8 @@ module.exports = Backbone.View.extend({
 				success: _.bind(function (model) {
 					App.Conversations.add(model);
 					this.model = App.Conversations.get(model._id);
-					_.bind(this.addAll(),this);
+					this.addAll();
+					this.$('.content').val('');
 				}, this)
 			})
 		}

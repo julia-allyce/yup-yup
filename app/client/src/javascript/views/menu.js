@@ -9,7 +9,6 @@ module.exports = Backbone.View.extend({
 	},
 	render: function () {
 		this.$el.html(this.template());
-		Backbone.$('.menu-link').removeClass('hidden');
 		if(this.collection){
 			this.collection.each(_.bind(function (model) {
 				if(model.get('_id') !== App.User.get('_id')){
