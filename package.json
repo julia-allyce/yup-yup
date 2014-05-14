@@ -1,6 +1,11 @@
 {
 	"name": "yup-yup",
+	"version":"0.0.1",
 	"main": "server.js",
+	"repository": {
+	    "type": "git",
+	    "url": "https://github.com/julia-allyce/yup-yup.git"
+	  },
 	"dependencies": {
 		"body-parser": "~1.0.1",
 		"bcrypt-nodejs" : "latest",
@@ -15,5 +20,9 @@
 		"passport" : "~0.1.17",
 	    "passport-local" : "~0.1.6",
 	    "underscore": "~1.6.0"
-  }
+	},
+	"license": "WTFPL",
+	"bugs": {
+		"url": "https://github.com/julia-allyce/yup-yup/issues"
+	}
 }
