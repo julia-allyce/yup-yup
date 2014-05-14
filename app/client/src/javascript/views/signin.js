@@ -1,11 +1,9 @@
 module.exports = Backbone.View.extend({
-	initialize:function (options) {
-		this.model = App.User;
-	},
 	template: require('../templates/signin'),
 	events: {
 		'click .sign-in':'signin',
-		'click .sign-up':'signup'
+		'click .sign-up':'signup',
+		'keydown #password':'onEnter'
 	},
 	render: function () {
 		this.$el.append(this.template());
@@ -22,22 +20,23 @@ module.exports = Backbone.View.extend({
 		this.$('.error-msg').removeClass('alert-error').html('');
 		Backbone.$(e).attr('disabled', true).html('Loading...');
 
-		this.model.save(data, {
+		App.User.save(data, {
 			method:'POST',
 			url: App.apiRoot + 'signin',
 			success: _.bind(this.onLogin, this),
 			error: _.bind(this.onError, this),
 		});
-
-		this.model.unset('password', { silent: true });
-
+	},
+	onEnter: function (e) {
+		if(e.keyCode == 13)
+			this.signin(e);
 	},
 	signup: function(e) {
 		e.preventDefault();
 		App.Router.navigate("signup", {trigger: true});
 	},
 	onLogin: function() {
-		this.model.set('isAuthenticated', true);
+		App.User.set('isAuthenticated', true);
 		App.Router.navigate("inbox", {trigger: true});
 	},
 	onError: function() {

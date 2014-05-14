@@ -14,6 +14,6 @@
 	    "method-override": "~1.0.0",
 		"passport" : "~0.1.17",
 	    "passport-local" : "~0.1.6",
-	    "passport-twitter" : "~1.0.2"
+	    "underscore": "~1.6.0"
   }
 }

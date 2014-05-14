@@ -1,7 +1,7 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
-var MessageSchema   = new Schema({
+var MessageSchema = module.exports = new Schema({
 	user: Schema.Types.ObjectId,
 	sent: {
 		type: Date,
@@ -10,4 +10,4 @@ var MessageSchema   = new Schema({
 	content: String
 });
 
-module.exports = mongoose.model('Message', MessageSchema);
+// module.exports = mongoose.model('Message', MessageSchema);

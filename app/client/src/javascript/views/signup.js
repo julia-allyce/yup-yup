@@ -29,9 +29,6 @@ module.exports = Backbone.View.extend({
 			success: _.bind(this.onSignup, this),
 			error: _.bind(this.onError, this),
 		});
-
-		this.model.unset('password', { silent: true });
-
 	},
 	onSignup: function() {
 		this.model.set('isAuthenticated', true);

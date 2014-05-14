@@ -1,22 +1,41 @@
 var express    = require('express'),
-	app = module.exports = express(),
-    passport = require('passport'),
-    cookieParser = require('cookie-parser'),
-    bodyParser   = require('body-parser'),
+	app = express(),
     User   = require('../../models/user'),
-    session      = require('express-session');
+    Conversation   = require('../../models/conversation'),
+    router     = express.Router();
 
-require('../../../config/passport')(passport);
+module.exports = function (passport) {
 
-app.use(cookieParser());
-app.use(bodyParser());
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
-app.use(passport.initialize());
-app.use(passport.session());
+	router.route('/')
+		.post(passport.authenticate('local-login'), function(req, res) {
+			var result = new User(req.user).publicUser();
+			User.find(null, publicFields(), function(err, users) {
+				if(err)
+					res.status(500).send();
+				result.friends = users;
+				res.status(200).json(result);
+			});
+		})
+		.get(function(req, res) {
+			if(req.isAuthenticated()) {
+		    	res.status(200).json(req.user);
+			}
+		    	
+		    res.status(401).json();
+		});
 
+	app.use('/', router);
 
-// process the login form
-app.post('/', passport.authenticate('local-login'), function(req, res) {
-	var result = new User(req.user).publicUser();
-    res.send(result);
-});
+	return app;
+}
+
+function publicFields () {
+    return [
+        '_id',
+        'name',
+        'handle',
+        'email',
+        'bio',
+        'isActive',
+    ].join(' ');
+};
