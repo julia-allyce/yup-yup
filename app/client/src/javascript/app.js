@@ -19,4 +19,5 @@ App.View = new MasterView({ el: Backbone.$('body') });
 Backbone.$(document).ready(function(){
 	App.View.render();
 	Backbone.history.start({pushState: true, root:'/app/'});
+	App.Router.navigate("signin", {trigger: true});
 });
