@@ -4,7 +4,7 @@ var express    = require('express'),
 	router = express.Router();
 
 app.use(express.static(__dirname + '/client'));
-router.route('*')
+router.route('/')
 	.get(function (req, res) {
 		res.sendfile(__dirname + '/client/index.html');
 	});

@@ -1,9 +1,7 @@
-var express    = require('express'),
-	app = express(),
-    User   = require('../../models/user'),
-    Conversation   = require('../../models/conversation'),
-    router     = express.Router();
-
+var express      = require('express'),
+    User         = require('../../models/user'),
+    Conversation = require('../../models/conversation'),
+    router       = express.Router();
 module.exports = function (passport) {
 
 	router.route('/')
@@ -24,9 +22,7 @@ module.exports = function (passport) {
 		    res.status(401).json();
 		});
 
-	app.use('/', router);
-
-	return app;
+	return router;
 }
 
 function publicFields () {

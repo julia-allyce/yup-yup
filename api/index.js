@@ -1,7 +1,6 @@
 // call the packages we need
 var express      = require('express'),
-	router       = express.Router(),
-	bodyParser   = require('body-parser');
+	router       = express.Router();
 
 module.exports = function (passport) {
 	router.use('/signin', require('./endpoints/signin/index')(passport));

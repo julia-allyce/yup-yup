@@ -1,9 +1,5 @@
 var express    = require('express'),
-	app 	   = express(),
-	bodyParser = require('body-parser'),
 	router     = express.Router();
-
-app.use(bodyParser());
 
 module.exports = function (passport) {
 
@@ -16,6 +12,5 @@ module.exports = function (passport) {
 	 	.post(passport.authenticate('local-login'), require('./postOne'));
 	// 	.delete(require('./delete'));
 
-	app.use('/', router);
-	return app;
+	return router;
 }
