@@ -11,7 +11,8 @@ App = {
 	Models: require('./models/config'),
 	Collections: require('./collections/config'),
 	Views: require('./views/config'),
-	Router: new Router()
+	Router: new Router(),
+	Socket: null
 };
 App.User = new App.Models.User();
 App.View = new MasterView({ el: Backbone.$('body') });

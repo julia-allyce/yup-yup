@@ -14,21 +14,22 @@ var ConversationSchema   = new Schema({
 });
 
 ConversationSchema.methods.addProps = function(obj) {
-	if(obj.alias)
-		this.alias = obj.alias;
+	if(obj) {
+		if(obj.alias)
+			this.alias = obj.alias;
 
-	if(obj.participants.length > 1) {
-		var arr = [];
-		_.map(obj.participants, function(id) {
-			arr.push(mongoose.Types.ObjectId(id));
-		});
-		this.participants = arr;
+		if(obj.participants.length > 1) {
+			var arr = [];
+			_.map(obj.participants, function(id) {
+				arr.push(mongoose.Types.ObjectId(id));
+			});
+			this.participants = arr;
+		}
+
+		if(obj.messages) {
+			this.messages = obj.messages;
+		}
 	}
-
-	if(obj.messages) {
-		this.messages = obj.messages;
-	}
-
     return this;
 };
 

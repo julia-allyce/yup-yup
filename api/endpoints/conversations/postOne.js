@@ -1,23 +1,39 @@
 var Conversation = require('../../models/conversation'),
-	mongoose = require('mongoose'),
-	_ = require('underscore');
+	mongoose = require('mongoose-q')(require('mongoose')),
+	_ = require('underscore'),
+	newMsg;
 
 module.exports = function(req, res) {
-	Conversation.findById(req.params.convo_id, function(err, convo) {
+	Conversation.findByIdQ(req.params.convo_id)
+		.then(function(convo) {
+			newMsg = convo.messages.create(req.body);
+			convo.messages.push(newMsg);
+			return convo;
+		})
+		.then(function (convo) {
+			convo.saveQ()
+			.then(function(result) {
+				console.log(newMsg);
+				res.status(201).json(newMsg);
+				return convo;
+			})
+			.then(function(convo){
+				// _.each(convo.participants, function(room) {
+				// 	io.sockets.in(room).emit('LALA', newMsg);
+				// });
+			})
+			.done();
 
-		if (err)
+		}).fail(function (err) {
 			res.status(500).send();
-
-		convo.messages.push(req.body);
-
-		// save the user
-		convo.save(function(err) {
-			if (err)
-				res.status(500).send(err);
-
-			res.status(204).json();
+		})
+		.done(function(){
+			console.log(newMsg);
+			//io.sockets.emit('lsls', newMsg);
 		});
 
-	});
-
+		io.sockets.emit('lsls', { content: 'ok',
+  user: '5372cc146ffcad0000000001',
+  _id: '537687795a9dca0000000002',
+  sent: new Date() });
 };
