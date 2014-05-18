@@ -6,7 +6,7 @@ var MasterView = require('./views/masterView'),
 	Router = require('./router');
 
 App = {
-	apiRoot: 'http://localhost:8080/api/',
+	apiRoot: '/api/',
 	Events: _.extend({},Backbone.Events),
 	Models: require('./models/config'),
 	Collections: require('./collections/config'),

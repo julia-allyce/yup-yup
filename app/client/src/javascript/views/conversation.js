@@ -3,6 +3,7 @@ module.exports = Backbone.View.extend({
 	initialize: function () {
 		this.prevKey = '';
 		this.model = App.CurrentConversation;
+		this.listenTo(this.model.get('messages'), 'add', this.addOne);
 	},
 	events: {
 		'click .send':'send',
@@ -55,36 +56,20 @@ module.exports = Backbone.View.extend({
 			},
 			creds = {email: App.User.get('email'), password: App.User.get('password')};
 
-		if (!_.isUndefined(this.model)) {
-
+		if (!this.collection.isNew()) {
 			var newMsg = new App.Models.Message(_.extend(data, creds));
-
 			newMsg.sync('create', newMsg, {
-				url: App.apiRoot + 'conversations/' + this.model.get('_id'),
-				success: _.bind(function (res, model) {
-					newMsg.set({'sent': new Date()});
-					this.addOne(newMsg);
-					this.$('.content').val('');
-					this.scrollBottom();
-				}, this)
+				url: App.apiRoot + 'conversations/' + this.model.get('_id')
 			});
 		} else {
-			var newCol = new App.Models.Conversation(_.extend( creds,
-				{
-					messages:[data],
-					alias: App.User.get('friends').findWhere({_id: App.TalkingTo}).get('handle') + ' & ' + App.User.get('handle'),
-					participants:[App.User.get('_id'), App.TalkingTo]
-				}));
-
-			newCol.sync('create', newCol, {
-				url: App.apiRoot + 'conversations',
-				success: _.bind(function (model) {
-					App.Conversations.add(model);
-					this.model = App.Conversations.get(model._id);
-					this.addAll();
-					this.$('.content').val('');
-				}, this)
-			})
+			if(this.collection.get('participants').length > 1) {
+				this.collection.sync('create', this.collection, {
+					url: App.apiRoot + 'conversations',
+					data:creds
+				});
+			} else {
+				//err it out
+			}
 		}
 	}
 })

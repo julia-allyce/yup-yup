@@ -3,6 +3,7 @@ var Schema       = mongoose.Schema;
 
 var MessageSchema = module.exports = new Schema({
 	user: Schema.Types.ObjectId,
+	conversation: Schema.Types.ObjectId,
 	sent: {
 		type: Date,
 		default: Date.now

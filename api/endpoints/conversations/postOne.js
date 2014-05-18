@@ -4,36 +4,38 @@ var Conversation = require('../../models/conversation'),
 	newMsg;
 
 module.exports = function(req, res) {
+	console.log('entering whatever');
 	Conversation.findByIdQ(req.params.convo_id)
 		.then(function(convo) {
 			newMsg = convo.messages.create(req.body);
+			newMsg.conversation = convo._id;
 			convo.messages.push(newMsg);
 			return convo;
 		})
 		.then(function (convo) {
+			console.log('saving convo');
 			convo.saveQ()
 			.then(function(result) {
-				console.log(newMsg);
 				res.status(201).json(newMsg);
 				return convo;
 			})
 			.then(function(convo){
-				// _.each(convo.participants, function(room) {
-				// 	io.sockets.in(room).emit('LALA', newMsg);
-				// });
+					console.log(JSON.stringify(newMsg), 'hi');
+					global.lastMessage = newMsg;
+				_.each(convo.participants, function(id){
+					io.sockets.to(id).emit('newChat', newMsg.toObject());
+				});
+			})
+			.fail(function (err) {
+				res.status(500).send();
 			})
 			.done();
 
-		}).fail(function (err) {
-			res.status(500).send();
 		})
-		.done(function(){
-			console.log(newMsg);
-			//io.sockets.emit('lsls', newMsg);
-		});
+		.fail(function (err) {
+			res.status(500).send();
+			console.log(err);
+		})
+		.done();
 
-		io.sockets.emit('lsls', { content: 'ok',
-  user: '5372cc146ffcad0000000001',
-  _id: '537687795a9dca0000000002',
-  sent: new Date() });
 };
