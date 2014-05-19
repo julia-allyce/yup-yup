@@ -98,7 +98,7 @@ NAVIGATION STYLES
 	opacity: 1;
 	margin-left: 300px;
 
-	.response {
+	.response, .friendInput {
 		left:300px;
 	}
 
@@ -108,28 +108,36 @@ NAVIGATION STYLES
 	}
 }
 
-/*********************
-FOOTER STYLES
-*********************/
-
-/*
-you'll probably need to do quite a bit
-of overriding here if you styled them for
-mobile. Make sure to double check these!
-*/
-footer {
-	menu {
-		li {
-			a {
-				&:hover {}
+.friendList {
+	top: auto;
+	bottom:auto;
+	z-index: 10;
+	left: auto;
+	right: auto;
+	height: 60%;
+	top:3em;
+	overflow-x: auto;
+	width:100%;
+	max-width:500px;
+	li {
+		width:100%;
+		a {	
+			text-align: left;
+			padding-left:1em;
+			display: block;
+			font-size: 1.2em;
+			text-decoration: none;
+			color:@white;
+			&.selected{
+				font-weight: 600;
+				font-style: italic;
 			}
-			/*
-			be careful with the depth of your menus.
-			it's very rare to have multi-depth menus in
-			the footer.
-			*/
-			ul {}
+
+			&:hover, &:focus {
+				background-color: lighten(@link-color, 10%);
+				color:#fff;
+			}
 		}
 	}
-} /* end footer */
+}
 

@@ -18,12 +18,14 @@ var Workspace = module.exports = Backbone.Router.extend({
     App.View.renderChildView('.content', App.Views.Signup);
   },
   conversation: function (convo_id) {
-    console.log('hellooo');
     if(App.User.get('isAuthenticated')) {
       if(convo_id) {
         App.CurrentConversation = App.Conversations.get(convo_id);
       } else {
-        App.CurrentConversation = new App.Models.Conversation({ messages: new App.Collections.Messages()});
+        App.CurrentConversation = new App.Models.Conversation({ 
+          messages: new App.Collections.Messages(),
+          participants: [App.User.id]
+        });
       }
       App.View.renderChildView('.content', App.Views.Conversation);
     } else

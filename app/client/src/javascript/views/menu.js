@@ -3,25 +3,27 @@ module.exports = Backbone.View.extend({
 	modelTemp: require('../templates/menu-item'),
 	initialize: function () {
 		this.collection = App.Conversations;
+		this.listenTo(this.collection, 'add', this.addOne);
 	},
 	events: {
-		'click a':'openConversation'
+		'click #newConvo':'openConversation'
 	},
 	render: function () {
 		this.$el.html(this.template());
-		if(this.collection){
-			this.collection.each(_.bind(function (model) {
-				this.$('menu').append(this.modelTemp(model.toJSON()));
-			}, this));
-		} else {
-			this.$('menu').append('<em>You have no conversations :(</em>');
-		}
-		this.$('menu').prepend(this.modelTemp({ _id:'', alias:'Start a Convo'}));
+		this.addAll();
 		return this;
+	},
+	addAll:function () {
+		this.collection.each(function (model) {
+			this.addOne(model);
+		},this);
+	},
+	addOne:function (model) {
+		this.$('menu').append(new App.Views.MenuItem({model: model}).render().el);
 	},
 	openConversation: function (e) {
 		e.preventDefault();
-		var convo_id = e.currentTarget.id;
-		App.Router.navigate('conversation/'+ convo_id, {trigger: true});
+		Backbone.$('menu li').removeClass('active');
+		App.Router.navigate('conversation/', {trigger: true});
 	} 
 })
